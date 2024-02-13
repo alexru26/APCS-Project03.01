@@ -99,16 +99,19 @@ public class SubWordFinder implements WordFinder {
         SubWordFinder obj = new SubWordFinder();
         obj.populateDictionary();
         ArrayList<SubWord> subwords = obj.getSubWords();
-        HashMap<String, Integer> occurences = new HashMap<>();
+        HashMap<String, Integer> occurences = new HashMap<>(); // oh my goodness gracious a hashmap??????
         try {
             PrintWriter file = new PrintWriter("subwords.txt");
             for(SubWord a : subwords) {
                 file.println(a);
+                // extra here!!!
                 if(!occurences.containsKey(a.rootWord)) occurences.put(a.rootWord, 1);
                 else occurences.replace(a.rootWord, occurences.get(a.rootWord)+1);
             }
             file.close();
         } catch(Exception e) { e.printStackTrace(); }
+
+        // extra here!!!
         int max = Collections.max(occurences.values());
         System.out.println("the greatest number of SubWord combinations is " + max + "\n");
         occurences.forEach((key, value) -> {
